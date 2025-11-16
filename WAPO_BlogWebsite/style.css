@@ -42,7 +42,6 @@ footer {
   color: white; /* keep readable */
 }
 
-
 /* General Styling */
 * {
   margin: 0;
@@ -82,13 +81,22 @@ body {
 }
 
 .nav-links a {
-  text-decoration: none;
-  color: white;
-  transition: 0.3s;
+  color: #f0f7da !important;             /* normal link color */
+  transition: color 0.25s ease, 
+              background-color 0.25s ease,
+              padding 0.25s ease,
+              border-radius 0.25s ease;
+}
+
+.nav-links a {
+  text-decoration: none !important;
 }
 
 .nav-links a:hover {
-  color: #cce3d8;
+  background-color: #36802d;             /* medium green highlight */
+  color: #f0f7da !important;             /* keep readable text */
+  padding: 6px 12px;                     /* soft hover padding */
+  border-radius: 6px;                    /* rounded highlight */
 }
 
 /* Hero */
