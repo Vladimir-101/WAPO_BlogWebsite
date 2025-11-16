@@ -1,3 +1,48 @@
+:root {
+  --primary-dark: #234d20;
+  --primary-mid:  #36802d;
+  --primary-light: #77ab59;
+  --accent-light: #c9df8a;
+  --background-light: #f0f7da;
+}
+
+body {
+  background-color: var(--background-light) !important;
+}
+
+.navbar {
+  background: var(--primary-dark) !important;
+}
+
+button {
+  background: var(--primary-mid) !important;
+}
+
+button:hover {
+  background: var(--primary-dark) !important;
+}
+
+.attractions {
+  background: var(--accent-light) !important;
+}
+
+footer {
+  background: var(--primary-dark) !important;
+}
+
+.contact {
+  background: var(--primary-mid) !important;
+}
+
+.blog {
+  background: var(--background-light) !important;
+}
+
+.hero {
+  color: white; /* keep readable */
+}
+
+
 /* General Styling */
 * {
   margin: 0;
