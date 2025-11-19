@@ -39,7 +39,7 @@ footer {
 }
 
 .hero {
-  color: white; /* keep readable */
+  color: white;
 }
 
 /* General Styling */
@@ -81,22 +81,19 @@ body {
 }
 
 .nav-links a {
-  color: #f0f7da !important;             /* normal link color */
+  color: #f0f7da !important;
   transition: color 0.25s ease, 
               background-color 0.25s ease,
               padding 0.25s ease,
               border-radius 0.25s ease;
-}
-
-.nav-links a {
   text-decoration: none !important;
 }
 
 .nav-links a:hover {
-  background-color: #36802d;             /* medium green highlight */
-  color: #f0f7da !important;             /* keep readable text */
-  padding: 6px 12px;                     /* soft hover padding */
-  border-radius: 6px;                    /* rounded highlight */
+  background-color: #36802d;
+  color: #f0f7da !important;
+  padding: 6px 12px;
+  border-radius: 6px;
 }
 
 /* Hero */
@@ -221,18 +218,36 @@ button:hover {
 
 .gallery-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 20px;
 }
 
-.gallery-container img {
+.gallery-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.gallery-card img {
   width: 100%;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
+  height: 220px;
+  object-fit: cover;
 }
 
-.gallery-container img:hover {
-  transform: scale(1.05);
+.gallery-info {
+  padding: 15px;
+  text-align: center;
+  font-size: 16px;
+  background: #f7f7f7;
 }
 
 /* Blog */
@@ -330,7 +345,7 @@ footer {
   font-size: 0.9rem;
 }
 
-/* 🌿 Section Fade-in Animations */
+/* Section Fade-in Animations */
 .hidden {
   opacity: 0;
   transform: translateY(40px);
@@ -358,30 +373,7 @@ footer {
   }
 }
 
-/* 🍃 Floating Leaves */
-.leaf {
-  position: fixed;
-  top: -40px;
-  width: 30px;
-  height: 30px;
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6b/Leaf_icon.svg');
-  background-size: cover;
-  opacity: 0.7;
-  animation: fall linear forwards;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(0) rotate(0deg);
-  }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-  }
-}
-
-/* ✨ Popup Message */
+/* Popup Message */
 .popup-message {
   position: fixed;
   top: 20%;
@@ -397,4 +389,11 @@ footer {
   transition: opacity 0.6s ease;
   z-index: 10000;
   text-align: center;
+}
+.img-cite {
+    font-size: 12px;
+    color: #888;
+    margin-top: 6px;
+    text-align: center;
+    font-style: italic;
 }
