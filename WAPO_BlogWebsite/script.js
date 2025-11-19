@@ -13,7 +13,7 @@ document.getElementById("exploreBtn").addEventListener("click", () => {
 });
 
 // Fade-in Animations on Scroll
-const sections = document.querySelectorAll("section");
+const section = document.querySelectorAll("section");
 const fadeInObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -121,7 +121,7 @@ popup.addEventListener("click", (e) => {
   }
 });
 
-const galleryCards = document.querySelectorAll(".gallery-card");
+const galleryCard = document.querySelectorAll(".gallery-card");
 galleryCards.forEach(card => {
   card.addEventListener("click", () => {
     popupImg.src = card.querySelector("img").src;

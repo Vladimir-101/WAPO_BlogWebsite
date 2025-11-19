@@ -397,3 +397,91 @@ footer {
     text-align: center;
     font-style: italic;
 }
+.guidelines {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Segoe UI", Verdana, sans-serif;
+  color: #2a3d23;
+
+  /* Two-column layout without breaking numbering */
+  column-count: 2;
+  column-gap: 25px;
+}
+
+.guidelines .guide-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #1e3a22;
+  font-weight: 700;
+  border-bottom: 3px solid #264d2a;
+  display: inline-block;
+  padding-bottom: 6px;
+
+  /* Make title span across both columns */
+  break-before: column;
+}
+
+/* Card design */
+.guide-section {
+  background: #f5f9f2;
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 4px solid #2e5d34;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.07);
+  margin-bottom: 20px;
+
+  /* Avoid splitting inside columns */
+  break-inside: avoid;
+}
+
+.guidelines h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #1f4725;
+  font-weight: 700;
+}
+
+.guidelines ul {
+  margin: 10px 0 0 18px;
+}
+
+.guidelines ul li {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+
+  /* Prevent items from breaking inside columns */
+  break-inside: avoid;
+}
+
+/* Start items 4 and 5 in new column */
+.guidelines ul li.start-new-column {
+  break-before: column;
+}
+
+/* MOBILE FIX — back to 1 column on small screens */
+@media (max-width: 700px) {
+  .guidelines {
+    column-count: 1;
+  }
+
+  .guidelines .guide-title {
+    grid-column: span 1;
+    text-align: center;
+    break-before: auto;
+  }
+
+  .guidelines ul li.start-new-column {
+    break-before: auto;
+  }
+}
+.columns {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+
+.columns ol {
+  padding-left: 20px;
+}
