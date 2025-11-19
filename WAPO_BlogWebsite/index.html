@@ -1,241 +1,241 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CedarScapes | Discover Impalutao's Hidden Paradise</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Tab-style sections */
-    .section { display: none; }
-    .section.active { display: block; }
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CedarScapes | Discover Impalutao's Hidden Paradise</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Tab-style sections */
+      .section { display: none; }
+      .section.active { display: block; }
 
-    /* Gallery citations */
-    .gallery-card p { font-size: 0.9rem; color: #555; margin-top: 5px; }
+      /* Gallery citations */
+      .gallery-card p { font-size: 0.9rem; color: #555; margin-top: 5px; }
 
-    /* Popup styles */
-    .popup {
-      display: none;
-      position: fixed;
-      top:0; left:0;
-      width:100%;
-      height:100%;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .popup-content {
-      position: relative;
-      background: #fff;
-      padding: 10px;
-      border-radius: 8px;
-      max-width: 90%;
-      max-height: 90%;
-      text-align: center;
-    }
-    .popup-content img {
-      max-width: 100%;
-      max-height: 70vh;
-    }
-    .popup-content p {
-      margin: 10px 0 0 0;
-      font-size: 0.9rem;
-      font-style: italic;
-    }
-    .popup-content a {
-      display: inline-block;
-      margin-top: 5px;
-      color: #007BFF;
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
+      /* Popup styles */
+      .popup {
+        display: none;
+        position: fixed;
+        top:0; left:0;
+        width:100%;
+        height:100%;
+        background: rgba(0,0,0,0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .popup-content {
+        position: relative;
+        background: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        max-width: 90%;
+        max-height: 90%;
+        text-align: center;
+      }
+      .popup-content img {
+        max-width: 100%;
+        max-height: 70vh;
+      }
+      .popup-content p {
+        margin: 10px 0 0 0;
+        font-size: 0.9rem;
+        font-style: italic;
+      }
+      .popup-content a {
+        display: inline-block;
+        margin-top: 5px;
+        color: #007BFF;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
 
-  <!-- Navigation -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">🌲 CedarScapes</div>
-      <ul class="nav-links">
-        <li><a onclick="showSection('home')">Home</a></li>
-        <li><a onclick="showSection('about')">About</a></li>
-        <li><a onclick="showSection('attractions')">Attractions</a></li>
-        <li><a onclick="showSection('gallery')">Gallery</a></li>
-        <li><a onclick="showSection('blog')">Stories</a></li>
-        <li><a onclick="showSection('contact')">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Navigation -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">🌲 CedarScapes</div>
+        <ul class="nav-links">
+          <li><a onclick="showSection('home')">Home</a></li>
+          <li><a onclick="showSection('about')">About</a></li>
+          <li><a onclick="showSection('attractions')">Attractions</a></li>
+          <li><a onclick="showSection('gallery')">Gallery</a></li>
+          <li><a onclick="showSection('blog')">Stories</a></li>
+          <li><a onclick="showSection('contact')">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <!-- Home -->
-  <section id="home" class="section">
-    <div class="hero">
-      <div class="hero-content">
-        <h1>Welcome to CedarScapes</h1>
-        <p>Where Nature Meets Adventure.</p>
-        <button onclick="showSection('about')">Begin Your Journey</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="about">
-      <h2>About CedarScapes</h2>
-      <p>Deep within the lush highlands of Impalutao lies a sanctuary...</p>
-      <p>Reconnect with nature through hiking, camping, and more.</p>
-    </div>
-  </section>
-
-  <!-- Attractions -->
-  <section id="attractions" class="section">
-    <div class="attractions">
-      <h2>Must-Visit Attractions</h2>
-      <div class="attractions-container">
-        <div class="attraction-card">
-          <img src="image1.jpg" alt="Cedar Trail">
-          <h3>Cedar Nature Trail</h3>
-          <p>Scenic hike through tall pine trees.</p>
-        </div>
-        <div class="attraction-card">
-          <img src="image2.jpg" alt="River Falls">
-          <h3>Impalutao Falls</h3>
-          <p>Refreshing hidden waterfall.</p>
-        </div>
-        <div class="attraction-card">
-          <img src="image3.jpg" alt="Campsite">
-          <h3>Mountain Campsite</h3>
-          <p>Camp under a sea of stars.</p>
+    <!-- Home -->
+    <section id="home" class="section">
+      <div class="hero">
+        <div class="hero-content">
+          <h1>Welcome to CedarScapes</h1>
+          <p>Where Nature Meets Adventure.</p>
+          <button onclick="showSection('about')">Begin Your Journey</button>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Gallery -->
-  <section id="gallery" class="section">
-    <div class="gallery">
-      <h2>Gallery</h2>
-      <div class="gallery-container">
-        <!-- 12 replaceable images -->
-        <div class="gallery-card" data-citation="Citation 1" data-link="https://example.com/1">
-          <img src="cedar_bg.jpg" alt="Image 1">
-        </div>
-        <div class="gallery-card" data-citation="Citation 2" data-link="https://example.com/2">
-          <img src="image2.jpg" alt="Image 2">
-        </div>
-        <div class="gallery-card" data-citation="Citation 3" data-link="https://example.com/3">
-          <img src="image3.jpg" alt="Image 3">
-        </div>
-        <div class="gallery-card" data-citation="Citation 4" data-link="https://example.com/4">
-          <img src="image4.jpg" alt="Image 4">
-        </div>
-        <div class="gallery-card" data-citation="Citation 5" data-link="https://example.com/5">
-          <img src="image5.jpg" alt="Image 5">
-        </div>
-        <div class="gallery-card" data-citation="Citation 6" data-link="https://example.com/6">
-          <img src="image6.jpg" alt="Image 6">
-        </div>
-        <div class="gallery-card" data-citation="Citation 7" data-link="https://example.com/7">
-          <img src="image7.jpg" alt="Image 7">
-        </div>
-        <div class="gallery-card" data-citation="Citation 8" data-link="https://example.com/8">
-          <img src="image8.jpg" alt="Image 8">
-        </div>
-        <div class="gallery-card" data-citation="Citation 9" data-link="https://example.com/9">
-          <img src="image9.jpg" alt="Image 9">
-        </div>
-        <div class="gallery-card" data-citation="Citation 10" data-link="https://example.com/10">
-          <img src="image10.jpg" alt="Image 10">
-        </div>
-        <div class="gallery-card" data-citation="Citation 11" data-link="https://example.com/11">
-          <img src="image11.jpg" alt="Image 11">
-        </div>
-        <div class="gallery-card" data-citation="Citation 12" data-link="https://example.com/12">
-          <img src="image12.jpg" alt="Image 12">
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="about">
+        <h2>About CedarScapes</h2>
+        <p>Deep within the lush highlands of Impalutao lies a sanctuary...</p>
+        <p>Reconnect with nature through hiking, camping, and more.</p>
+      </div>
+    </section>
+
+    <!-- Attractions -->
+    <section id="attractions" class="section">
+      <div class="attractions">
+        <h2>Must-Visit Attractions</h2>
+        <div class="attractions-container">
+          <div class="attraction-card">
+            <img src="natigbasan.jpg" alt="Natigbasan Falls">
+            <h3>Natigbasan Falls</h3>
+            <p>The first enchanting waterfall you’ll meet. 720 meters long </p>
+          </div>
+          <div class="attraction-card">
+            <img src="gantungan.jpg" alt="Gantungan Falls">
+            <h3>Gantungan Falls</h3>
+            <p>Located after Natigbasan Falls, this is the second waterfall in the CEDAR complex. Approximately 12 meters (39 feet).</p>
+          </div>
+          <div class="attraction-card">
+            <img src="dila.jpg" alt="Dila Falls">
+            <h3>Dila Falls</h3>
+            <p>The final and largest of the three waterfalls, standing at 960 meters. </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Popup Viewer -->
-  <div id="imagePopup" class="popup">
-    <div class="popup-content" id="popupContent">
-      <img id="popupImage" src="" alt="">
-      <p id="popupCitation"></p>
-      <a id="popupLink" href="#" target="_blank">View Source</a>
-    </div>
-  </div>
+    <!-- Gallery -->
+    <section id="gallery" class="section">
+      <div class="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-container">
+          <!-- 12 replaceable images -->
+          <div class="gallery-card" data-citation="Citation 1" data-link="https://example.com/1">
+            <img src="cedar_bg.jpg" alt="Image 1">
+          </div>
+          <div class="gallery-card" data-citation="Citation 2" data-link="https://www.pinoyadventurista.com/2013/03/hiking-and-waterfalls-hopping-at-cedar-bukidnon.html">
+            <img src="dila.jpg" alt="Image 2">
+          </div>
+          <div class="gallery-card" data-citation="Citation 3" data-link="https://www.pinoyadventurista.com/2013/03/hiking-and-waterfalls-hopping-at-cedar-bukidnon.html">
+            <img src="gantungan.jpg" alt="Image 3">
+          </div>
+          <div class="gallery-card" data-citation="Citation 4" data-link="https://www.pinoyadventurista.com/2013/03/hiking-and-waterfalls-hopping-at-cedar-bukidnon.html">
+            <img src="natigbasan.jpg" alt="Image 4">
+          </div>
+          <div class="gallery-card" data-citation="Citation 5" data-link="https://example.com/5">
+            <img src="image5.jpg" alt="Image 5">
+          </div>
+          <div class="gallery-card" data-citation="Citation 6" data-link="https://example.com/6">
+            <img src="image6.jpg" alt="Image 6">
+          </div>
+          <div class="gallery-card" data-citation="Citation 7" data-link="https://example.com/7">
+            <img src="image7.jpg" alt="Image 7">
+          </div>
+          <div class="gallery-card" data-citation="Citation 8" data-link="https://example.com/8">
+            <img src="image8.jpg" alt="Image 8">
+          </div>
+          <div class="gallery-card" data-citation="Citation 9" data-link="https://example.com/9">
+            <img src="image9.jpg" alt="Image 9">
+          </div>
+          <div class="gallery-card" data-citation="Citation 10" data-link="https://example.com/10">
+            <img src="image10.jpg" alt="Image 10">
+          </div>
+          <div class="gallery-card" data-citation="Citation 11" data-link="https://example.com/11">
+            <img src="image11.jpg" alt="Image 11">
+          </div>
+          <div class="gallery-card" data-citation="Citation 12" data-link="https://example.com/12">
+            <img src="image12.jpg" alt="Image 12">
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- Blog -->
-  <section id="blog" class="section">
-    <div class="blog">
-      <h2>Travel Stories</h2>
-      <div class="blog-container">
-        <article class="blog-post">
-          <img src="image13.jpg" alt="Trail Adventure">
-          <h3>Into the Cedar Trails</h3>
-          <p>Like walking inside a living painting...</p>
-        </article>
+    <!-- Popup Viewer -->
+    <div id="imagePopup" class="popup">
+      <div class="popup-content" id="popupContent">
+        <img id="popupImage" src="" alt="">
+        <p id="popupCitation"></p>
+        <a id="popupLink" href="#" target="_blank">View Source</a>
       </div>
     </div>
-  </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section">
-    <div class="contact">
-      <h2>Contact Us</h2>
-      <p>We’d love to assist your next adventure!</p>
-      <form id="contactForm">
-        <input type="text" placeholder="Full Name" required />
-        <input type="email" placeholder="Email" required />
-        <textarea placeholder="Message" rows="5" required></textarea>
-        <button>Send Message</button>
-      </form>
-    </div>
-  </section>
+    <!-- Blog -->
+    <section id="blog" class="section">
+      <div class="blog">
+        <h2>Travel Stories</h2>
+        <div class="blog-container">
+          <article class="blog-post">
+            <img src="image13.jpg" alt="Trail Adventure">
+            <h3>Into the Cedar Trails</h3>
+            <p>Like walking inside a living painting...</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 CedarScapes | All Rights Reserved</p>
-  </footer>
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="contact">
+        <h2>Contact Us</h2>
+        <p>We’d love to assist your next adventure!</p>
+        <form id="contactForm">
+          <input type="text" placeholder="Full Name" required />
+          <input type="email" placeholder="Email" required />
+          <textarea placeholder="Message" rows="5" required></textarea>
+          <button>Send Message</button>
+        </form>
+      </div>
+    </section>
 
-  <script>
-    // Tab functionality
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(s => s.classList.remove('active'));
-      document.getElementById(sectionId).classList.add('active');
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      showSection('home');
+    <footer>
+      <p>&copy; 2025 CedarScapes | All Rights Reserved</p>
+    </footer>
 
-      // Gallery popup functionality
-      const galleryCards = document.querySelectorAll('.gallery-card');
-      const popup = document.getElementById('imagePopup');
-      const popupImage = document.getElementById('popupImage');
-      const popupCitation = document.getElementById('popupCitation');
-      const popupLink = document.getElementById('popupLink');
-      const popupContent = document.getElementById('popupContent');
+    <script>
+      // Tab functionality
+      function showSection(sectionId) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(s => s.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+      }
+      document.addEventListener('DOMContentLoaded', () => {
+        showSection('home');
 
-      galleryCards.forEach(card => {
-        card.addEventListener('click', () => {
-          const src = card.querySelector('img').src;
-          const citation = card.dataset.citation;
-          const link = card.dataset.link;
-          popupImage.src = src;
-          popupCitation.textContent = citation;
-          popupLink.href = link;
-          popup.style.display = 'flex';
+        // Gallery popup functionality
+        const galleryCards = document.querySelectorAll('.gallery-card');
+        const popup = document.getElementById('imagePopup');
+        const popupImage = document.getElementById('popupImage');
+        const popupCitation = document.getElementById('popupCitation');
+        const popupLink = document.getElementById('popupLink');
+        const popupContent = document.getElementById('popupContent');
+
+        galleryCards.forEach(card => {
+          card.addEventListener('click', () => {
+            const src = card.querySelector('img').src;
+            const citation = card.dataset.citation;
+            const link = card.dataset.link;
+            popupImage.src = src;
+            popupCitation.textContent = citation;
+            popupLink.href = link;
+            popup.style.display = 'flex';
+          });
+        });
+
+        // Close popup when clicking outside the image
+        popup.addEventListener('click', (e) => {
+          if (!popupContent.contains(e.target)) {
+            popup.style.display = 'none';
+          }
         });
       });
-
-      // Close popup when clicking outside the image
-      popup.addEventListener('click', (e) => {
-        if (!popupContent.contains(e.target)) {
-          popup.style.display = 'none';
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+    </script>
+  </body>
+  </html>
