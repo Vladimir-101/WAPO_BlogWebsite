@@ -14,6 +14,22 @@ body {
   background: var(--primary-dark) !important;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: #f0f7da;
+}
+
+.logo img {
+  height: 40px;          /* Adjust size as needed */
+  width: auto;
+  object-fit: contain;
+  border-radius: 5px;    /* Remove if you want sharp edges */
+}
+
 button {
   background: var(--primary-mid) !important;
 }
