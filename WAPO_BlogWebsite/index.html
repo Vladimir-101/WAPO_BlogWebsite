@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CedarScapes | Discover Impalutao's Hidden Paradise</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Leaflet CSS/JS for interactive map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     /* Tab-style sections */
     .section { display: none; }
@@ -49,6 +52,54 @@
       color: #007BFF;
       text-decoration: none;
     }
+    /* About section: two-column layout (left text, right map) */
+    .about-row {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px auto 24px;
+      max-width: 1180px;
+      padding: 0 18px;
+    }
+    .about-row .about {
+      flex: 1 1 520px;
+      min-width: 320px;
+      max-width: 560px;
+      text-align: left;
+      margin-top: 0;
+    }
+    .about-row .about h2 { margin: 0 0 8px 0; }
+    .about-row .about p { line-height: 1.45; color: #1f2f2a; }
+
+    .about-row .about-map {
+      flex: 1 1 560px;
+      min-width: 320px;
+      max-width: 720px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* top-align map with About heading */
+    }
+    .about-row .about-map .map-media {
+      width: 100%;
+      height: 620px;
+      min-height: 420px;
+      border-radius: 6px;
+      box-shadow: 0 8px 26px rgba(0,0,0,0.06);
+      display: block;
+      background: #f7f7f7;
+      border: 6px solid #f0f6f3; /* subtle frame */
+      margin-top: 0; /* ensure top edge aligns with heading */
+      overflow: hidden;
+      /* allow user interaction with the interactive map */
+      pointer-events: auto;
+    }
+
+    .why-title { color: #0aa06a; font-size: 1.6rem; margin: 18px 0; font-weight:700; }
+    .why-list { list-style: none; padding: 0; margin: 0; max-width: 560px; }
+    .why-list li { display:flex; align-items:center; gap:14px; padding:14px 0; border-bottom:1px solid rgba(10,60,40,0.06); color:#2b6b57; font-weight:600; }
+    .why-list li .icon { width:34px; text-align:center; font-size:1.1rem; }
   </style>
 </head>
 <body>
@@ -85,11 +136,29 @@
 
   <!-- About -->
   <section id="about" class="section">
-    <div class="about">
-      <h2>About CedarScapes</h2>
-      <p>Deep within the lush highlands of Impalutao lies a sanctuary...</p>
-      <p>Reconnect with nature through hiking, camping, and more.</p>
+    <div class="about-row">
+      <div class="about">
+        <h2>About CedarScapes</h2>
+        <p>Deep within the lush highlands of Impalutao, Malaybalay City, Bukidnon, lies a sanctuary of nature called Cedar — a place where adventure, relaxation, and discovery intertwine. Known for its majestic pine trees and cool mountain air, this eco-park offers visitors a refreshing escape from the bustling city life.</p>
+        <p>Whether you're hiking through forest trails, pitching a tent under a sea of stars, or dipping your feet in a crystal-clear stream, every moment at Cedar reconnects you with the wonders of nature.</p>
+
+        <h3 class="why-title">Why Visit CedarScapes?</h3>
+        <ul class="why-list">
+          <li><span class="icon">🌲</span>Pristine pine forests and natural landscapes</li>
+          <li><span class="icon">🏕️</span>Well-maintained camping facilities</li>
+          <li><span class="icon">💧</span>Crystal-clear streams and natural waterfalls</li>
+          <li><span class="icon">🥾</span>Scenic hiking trails for all levels</li>
+          <li><span class="icon">🌌</span>Perfect spot for stargazing and nature photography</li>
+          <li><span class="icon">🌿</span>Eco-friendly and sustainable tourism</li>
+        </ul>
+      </div>
+
+      <div class="about-map">
+        <!-- Interactive Leaflet map container -->
+        <div id="aboutMap" class="map-media" aria-label="Interactive map of CedarScapes"></div>
+      </div>
     </div>
+
     <div class="guidelines">
       <h2>Visitor Guidelines</h2>
       <h3>1. Essentials</h3>
@@ -239,9 +308,41 @@
   <!-- ===== SCRIPTS ===== -->
   <script>
     // Tab functionality
+    // Leaflet map instance (set in DOMContentLoaded)
+    let aboutMap = null;
     function showSection(sectionId) {
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.getElementById(sectionId).classList.add('active');
+      if (sectionId === 'about') {
+        // adjust static map height to match about column
+        matchMapHeight();
+      }
+    }
+
+    // Match .map-media height to the .about column for a pixel-perfect layout
+    function matchMapHeight() {
+      const about = document.querySelector('.about-row .about');
+      const mapEl = document.querySelector('.about-row .about-map .map-media');
+      if (!about || !mapEl) return;
+      // compute target height (including padding) and set on map
+      const target = about.offsetHeight;
+      // apply a minimum for readability
+      const min = 420;
+      mapEl.style.height = Math.max(target, min) + 'px';
+      // if Leaflet map exists, invalidate size so tiles render correctly
+      if (aboutMap) {
+        // small timeout to allow layout to settle
+        setTimeout(() => { aboutMap.invalidateSize(); }, 120);
+      }
+    }
+
+    // simple debounce helper
+    function debounce(fn, wait) {
+      let t;
+      return function(...args) {
+        clearTimeout(t);
+        t = setTimeout(() => fn.apply(this, args), wait);
+      };
     }
 
     // Default section
@@ -264,12 +365,47 @@
         });
       });
 
+      // Initialize Leaflet map (interactive)
+      try {
+        const mapContainer = document.getElementById('aboutMap');
+        if (mapContainer && typeof L !== 'undefined') {
+          // center map on the CEDAR coordinate provided by user
+          const cedarLat = 8.25077355367092;
+          const cedarLng = 125.03167718301292;
+          aboutMap = L.map('aboutMap', { zoomControl: true }).setView([cedarLat, cedarLng], 13);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+          }).addTo(aboutMap);
+          // Highlight the CEDAR area with a semi-transparent circle (approximate)
+          const cedarCircle = L.circle([cedarLat, cedarLng], {
+            color: '#0aa06a',
+            fillColor: '#0aa06a',
+            fillOpacity: 0.12,
+            weight: 2,
+            radius: 3000
+          }).addTo(aboutMap);
+          // clicking the highlighted area opens Google Maps at the exact CEDAR coordinates
+          cedarCircle.on('click', function() {
+            const url = 'https://www.google.com/maps/search/?api=1&query=' + cedarLat + ',' + cedarLng;
+            window.open(url, '_blank');
+          });
+          // Fit the map to show the whole highlighted area with padding (limit zoom)
+          aboutMap.fitBounds(cedarCircle.getBounds(), { padding: [40, 40], maxZoom: 12 });
+        }
+      } catch (e) {
+        console.warn('Leaflet failed to initialize:', e);
+      }
+
       // Close popup when clicking outside content
       popup.addEventListener("click", (e) => {
         if (!popupContent.contains(e.target)) {
           popup.style.display = "none";
         }
       });
+
+      // set map height on load and on resize
+      matchMapHeight();
+      window.addEventListener('resize', debounce(matchMapHeight, 120));
     });
 
     // Logo popup
