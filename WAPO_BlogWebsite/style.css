@@ -2,7 +2,7 @@
   --primary-dark: #234d20;
   --primary-mid:  #36802d;
   --primary-light: #77ab59;
-  --accent-light: #c9df8a;
+  --accent-light: #f0f8dc;
   --background-light: #f0f7da;
 }
 
@@ -176,10 +176,11 @@ button:hover {
 
 /* Attractions */
 .attractions {
-  background: #eef6f2;
+  background-color: #ffffff; /* pure white */
   padding: 80px 10%;
   text-align: center;
 }
+
 
 .attractions h2 {
   color: #006d4f;
@@ -573,4 +574,7 @@ footer {
   color: white;
   padding: 15px;
   text-align: center;
+}
+#attractions {
+  background-color: #ffffff;
 }
