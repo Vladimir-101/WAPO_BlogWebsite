@@ -223,7 +223,6 @@
     <div class="gallery">
       <h2>Gallery</h2>
       <div class="gallery-container">
-        <!-- 12 replaceable images -->
         <div class="gallery-card" data-citation="Citation 1" data-link="https://www.facebook.com/share/p/17NBcJRtfo/">
           <img src="cedar_bg.jpg" alt="Image 1">
         </div>
@@ -327,7 +326,79 @@ As a girl who grew up in the city, I found myself like a kid, seeing a thick tro
   <section id="contact" class="section">
     <div class="contact">
       <h2>Contact Us</h2>
-      <p>We’d love to assist your next adventure!</p>
+      <p>We'd love to assist your next adventure!</p>
+      
+      <!-- Profiles Section -->
+      <div class="profiles-section">
+        <h3>Our Team</h3>
+        <div class="profiles-container">
+          <div class="profile-card">
+            <div class="profile-image">
+              <img src="profile1.jpg" alt="Team Member 1">
+              <div class="profile-description">
+                <p>Designed the entire website with the help of our team.</p>
+              </div>
+            </div>
+            <div class="profile-info">
+              <h4>Vladimir Muaña</h4>
+              <p class="profile-role">Designer</p>
+            </div>
+          </div>
+
+          <div class="profile-card">
+            <div class="profile-image">
+              <img src="profile2.jpg" alt="Team Member 2">
+              <div class="profile-description">
+                <p>Wrote the entire details of the website.</p>
+              </div>
+            </div>
+            <div class="profile-info">
+              <h4>Cris Harvey Fabricante</h4>
+              <p class="profile-role">Writer</p>
+            </div>
+          </div>
+
+          <div class="profile-card">
+            <div class="profile-image">
+              <img src="profile3.jpg" alt="Team Member 3">
+              <div class="profile-description">
+                <p>Researched information about cedar and citing professional bloggers.</p>
+              </div>
+            </div>
+            <div class="profile-info">
+              <h4>Dexleir Vhon Meric Estigoy</h4>
+              <p class="profile-role">Researcher</p>
+            </div>
+          </div>
+
+          <div class="profile-card">
+            <div class="profile-image">
+              <img src="profile4.jpg" alt="Team Member 4">
+              <div class="profile-description">
+                <p>Programmed the whole website by building the layout and structure.</p>
+              </div>
+            </div>
+            <div class="profile-info">
+              <h4>Vince Leonard Maestrado</h4>
+              <p class="profile-role">Programmer</p>
+            </div>
+          </div>
+
+          <div class="profile-card">
+            <div class="profile-image">
+              <img src="profile5.jpg" alt="Team Member 5">
+              <div class="profile-description">
+                <p>Programmed and styled the whole website by implementing the ideas of the designer.</p>
+              </div>
+            </div>
+            <div class="profile-info">
+              <h4>Ezequiel Jamisola</h4>
+              <p class="profile-role">Programmer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <form id="contactForm">
         <input type="text" placeholder="Full Name" required />
         <input type="email" placeholder="Email" required />
@@ -342,121 +413,94 @@ As a girl who grew up in the city, I found myself like a kid, seeing a thick tro
   </footer>
 
   <!-- ===== SCRIPTS ===== -->
-  <script>
-    // Tab functionality
-    // Leaflet map instance (set in DOMContentLoaded)
-    let aboutMap = null;
-    function showSection(sectionId) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(sectionId).classList.add('active');
-      if (sectionId === 'about') {
-        // adjust static map height to match about column
-        matchMapHeight();
-      }
-    }
-
-    // Match .map-media height to the .about column for a pixel-perfect layout
-    function matchMapHeight() {
-      const about = document.querySelector('.about-row .about');
-      const mapEl = document.querySelector('.about-row .about-map .map-media');
-      if (!about || !mapEl) return;
-      // compute target height (including padding) and set on map
-      const target = about.offsetHeight;
-      // apply a minimum for readability
-      const min = 420;
-      mapEl.style.height = Math.max(target, min) + 'px';
-      // if Leaflet map exists, invalidate size so tiles render correctly
-      if (aboutMap) {
-        // small timeout to allow layout to settle
-        setTimeout(() => { aboutMap.invalidateSize(); }, 120);
-      }
-    }
-
-    // simple debounce helper
-    function debounce(fn, wait) {
-      let t;
-      return function(...args) {
-        clearTimeout(t);
-        t = setTimeout(() => fn.apply(this, args), wait);
-      };
-    }
-
-    // Default section
-    document.addEventListener("DOMContentLoaded", () => {
-      showSection("home");
-
-      const popup = document.getElementById("imagePopup");
-      const popupImage = document.getElementById("popupImage");
-      const popupCitation = document.getElementById("popupCitation");
-      const popupLink = document.getElementById("popupLink");
-      const popupContent = document.querySelector(".popup-content");
-
-      // Gallery popup
-      document.querySelectorAll(".gallery-card").forEach(card => {
-        card.addEventListener("click", () => {
-          popupImage.src = card.querySelector("img").src;
-          popupCitation.textContent = card.dataset.citation;
-          popupLink.href = card.dataset.link;
-          popup.style.display = "flex";
-        });
-      });
-
-      // Initialize Leaflet map (interactive)
-      try {
-        const mapContainer = document.getElementById('aboutMap');
-        if (mapContainer && typeof L !== 'undefined') {
-          // center map on the CEDAR coordinate provided by user
-          const cedarLat = 8.25077355367092;
-          const cedarLng = 125.03167718301292;
-          aboutMap = L.map('aboutMap', { zoomControl: true }).setView([cedarLat, cedarLng], 13);
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-          }).addTo(aboutMap);
-          // Highlight the CEDAR area with a semi-transparent circle (approximate)
-          const cedarCircle = L.circle([cedarLat, cedarLng], {
-            color: '#0aa06a',
-            fillColor: '#0aa06a',
-            fillOpacity: 0.12,
-            weight: 2,
-            radius: 3000
-          }).addTo(aboutMap);
-          // clicking the highlighted area opens Google Maps at the exact CEDAR coordinates
-          cedarCircle.on('click', function() {
-            const url = 'https://www.google.com/maps/search/?api=1&query=' + cedarLat + ',' + cedarLng;
-            window.open(url, '_blank');
-          });
-          // Fit the map to show the whole highlighted area with padding (limit zoom)
-          aboutMap.fitBounds(cedarCircle.getBounds(), { padding: [40, 40], maxZoom: 12 });
-        }
-      } catch (e) {
-        console.warn('Leaflet failed to initialize:', e);
-      }
-
-      // Close popup when clicking outside content
-      popup.addEventListener("click", (e) => {
-        if (!popupContent.contains(e.target)) {
-          popup.style.display = "none";
-        }
-      });
-
-      // set map height on load and on resize
+<script>
+  // Tab functionality
+  let aboutMap = null;
+  function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+    if (sectionId === 'about') {
       matchMapHeight();
-      window.addEventListener('resize', debounce(matchMapHeight, 120));
+    }
+  }
+
+  function matchMapHeight() {
+    const about = document.querySelector('.about-row .about');
+    const mapEl = document.querySelector('.about-row .about-map .map-media');
+    if (!about || !mapEl) return;
+
+    const target = about.offsetHeight;
+    const min = 420;
+    mapEl.style.height = Math.max(target, min) + 'px';
+
+    if (aboutMap) {
+      setTimeout(() => { aboutMap.invalidateSize(); }, 120);
+    }
+  }
+
+  function debounce(fn, wait) {
+    let t;
+    return function(...args) {
+      clearTimeout(t);
+      t = setTimeout(() => fn.apply(this, args), wait);
+    };
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    showSection("home");
+
+    const popup = document.getElementById("imagePopup");
+    const popupImage = document.getElementById("popupImage");
+    const popupCitation = document.getElementById("popupCitation");
+    const popupLink = document.getElementById("popupLink");
+    const popupContent = document.querySelector(".popup-content");
+
+    document.querySelectorAll(".gallery-card").forEach(card => {
+      card.addEventListener("click", () => {
+        popupImage.src = card.querySelector("img").src;
+        popupCitation.textContent = card.dataset.citation;
+        popupLink.href = card.dataset.link;
+        popup.style.display = "flex";
+      });
     });
 
-    // Logo popup
-    function openLogoPopup() {
-      const popup = document.getElementById("imagePopup");
-      const popupImage = document.getElementById("popupImage");
-      const popupCitation = document.getElementById("popupCitation");
-      const popupLink = document.getElementById("popupLink");
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup || e.target === popupContent) {
+        popup.style.display = "none";
+      }
 
-      popupImage.src = "cedarscape.png";
-      popupCitation.textContent = "CedarScapes Official Logo";
-      popupLink.href = "cedarscape.png";
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        popup.style.display = "none";
+      }
+    });
+    });
+    
+    try {
+      const mapContainer = document.getElementById('aboutMap');
+      if (mapContainer && typeof L !== 'undefined') {
+        const cedarLat = 8.25077355367092;
+        const cedarLng = 125.03167718301292;
 
-      popup.style.display = "flex";
+        aboutMap = L.map('aboutMap', { zoomControl: true }).setView([cedarLat, cedarLng], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(aboutMap);
+
+        const cedarCircle = L.circle([cedarLat, cedarLng], {
+          color: '#0aa06a',
+          fillColor: '#0aa06a',
+          fillOpacity: 0.12,
+          radius: 800
+        }).addTo(aboutMap);
+      }
+    } catch (e) {
+      console.error("Leaflet initialization failed:", e);
     }
-  </script>
+
+    window.addEventListener("resize", debounce(matchMapHeight, 200));
+  });
+</script>
 </body>
 </html>

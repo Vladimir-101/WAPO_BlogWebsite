@@ -9,7 +9,7 @@ document.getElementById("exploreBtn").addEventListener("click", () => {
 
   // Animate zoom effect
   aboutSection.classList.add("zoom-in");
-  setTimeout(() => aboutSection.classList.remove("zoom-in"), 1500);
+  setTimeout(() => aboutSection.classList.remove("zoom-in"), 1000);
 });
 
 /* -------------------------------
@@ -158,3 +158,4 @@ if (logo) {
     document.body.style.overflow = "hidden";
   });
 }
+
