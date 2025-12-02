@@ -79,12 +79,13 @@
       max-width: 720px;
       display: flex;
       justify-content: center;
-      align-items: flex-start; /* top-align map with About heading */
+      align-items: flex-start; /* top-align column content */
+      padding-top: 120px; /* push only the map down so it doesn't touch the nav */
     }
     .about-row .about-map .map-media {
       width: 100%;
-      height: 620px;
-      min-height: 420px;
+      height: 480px; /* reduced so it sits below the header */
+      min-height: 320px;
       border-radius: 6px;
       box-shadow: 0 8px 26px rgba(0,0,0,0.06);
       display: block;
@@ -425,14 +426,7 @@ As a girl who grew up in the city, I found myself like a kid, seeing a thick tro
   }
 
   function matchMapHeight() {
-    const about = document.querySelector('.about-row .about');
-    const mapEl = document.querySelector('.about-row .about-map .map-media');
-    if (!about || !mapEl) return;
-
-    const target = about.offsetHeight;
-    const min = 420;
-    mapEl.style.height = Math.max(target, min) + 'px';
-
+    // Let CSS control sizing. Only ask Leaflet to recalculate.
     if (aboutMap) {
       setTimeout(() => { aboutMap.invalidateSize(); }, 120);
     }
