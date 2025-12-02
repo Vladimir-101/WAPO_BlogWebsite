@@ -112,6 +112,17 @@
         <img src="cedarscape.jpg" alt="CedarScapes Logo">
         <span>CedarScapes</span>
       </div>
+<!-- HAMBURGER BUTTON -->
+<div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<!-- Add id to nav-links for JS -->
+<ul class="nav-links" id="navLinks">
+
+</ul>
 
       <ul class="nav-links">
         <li><a onclick="showSection('home')">Home</a></li>
@@ -215,6 +226,15 @@
           <h3>Dila Falls</h3>
           <p>The final and largest of the three waterfalls, standing at 960 meters. </p>
         </div>
+         <div>
+          <div class="attraction-card">
+            <img src="CEDAR POOL.png" alt="CEDAR Pool">
+            <h4>CEDAR Pool</h4>
+            <p>This man-made pool is the first attraction visitors encounter before heading to the waterfalls. It is surrounded by towering trees that create a scenic, almost cinematic atmosphere.</p>
+          </div>
+        </div>
+      </div>
+
       </div>
     </div>
   </section>
@@ -322,7 +342,6 @@ As a girl who grew up in the city, I found myself like a kid, seeing a thick tro
 </section>
 
 
-
   <!-- Contact -->
   <section id="contact" class="section">
     <div class="contact">
@@ -342,7 +361,7 @@ As a girl who grew up in the city, I found myself like a kid, seeing a thick tro
             </div>
             <div class="profile-info">
               <h4>Vladimir Muaña</h4>
-              <p class="profile-role">Designer</p>
+              <p class="profile-role">Designer/Programmer</p>
             </div>
           </div>
 
@@ -495,5 +514,12 @@ As a girl who grew up in the city, I found myself like a kid, seeing a thick tro
     window.addEventListener("resize", debounce(matchMapHeight, 200));
   });
 </script>
+<script>
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+}
+</script>
+
 </body>
 </html>
+

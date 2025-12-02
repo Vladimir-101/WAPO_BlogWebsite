@@ -158,4 +158,41 @@ if (logo) {
     document.body.style.overflow = "hidden";
   });
 }
+const container = document.querySelector('.leaves-container');
+const leaves = [
+  'leaf1.jpg', 
+  'leaf2.jpg', 
+  'leaf3.jpg'
+]; // Add your leaf image paths here
 
+function createLeaf() {
+  const leaf = document.createElement('div');
+  leaf.classList.add('leaf');
+
+  // Random leaf image
+  leaf.style.backgroundImage = `url(${leaves[Math.floor(Math.random() * leaves.length)]})`;
+
+  // Random size
+  const size = 20 + Math.random() * 40; // 20px to 60px
+  leaf.style.width = size + 'px';
+  leaf.style.height = size + 'px';
+
+  // Random horizontal start
+  leaf.style.left = Math.random() * 100 + 'vw';
+
+  // Random animation durations
+  const fallDuration = 5 + Math.random() * 5; // 5-10s
+  const swayDuration = 2 + Math.random() * 3; // 2-5s
+  leaf.style.animationDuration = `${fallDuration}s, ${swayDuration}s`;
+
+  // Random delay so leaves don't appear all at once
+  leaf.style.animationDelay = `${Math.random() * 5}s, ${Math.random() * 5}s`;
+
+  container.appendChild(leaf);
+
+  // Remove leaf after it falls
+  setTimeout(() => leaf.remove(), fallDuration * 1000);
+}
+
+// Create leaves continuously
+setInterval(createLeaf, 300); // every 0.3s
